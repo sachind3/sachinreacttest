@@ -4,7 +4,8 @@ import { apiService } from "../services/apiServices";
 export const AppContext = createContext();
 
 export const AppState = ({ children }) => {
-  const [players, setPlayers] = useState([]);
+  const [data, setData] = useState([]);
+  const [player, setPlayers] = useState([]);
   const [q, setQ] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -17,7 +18,7 @@ export const AppState = ({ children }) => {
           return a.Value - b.Value;
         });
 
-        setPlayers(sortDataByValues);
+        setData(sortDataByValues);
       }
       setLoading(false);
     } catch (error) {
@@ -28,6 +29,13 @@ export const AppState = ({ children }) => {
   useEffect(() => {
     fetchlist();
   }, []);
+
+  useEffect(() => {
+    const newEntries = data.filter((value) =>
+      value.TName.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    setPacientes(newPacientes);
+  }, [searchValue]);
 
   const store = {
     loading,
