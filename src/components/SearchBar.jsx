@@ -10,7 +10,8 @@ export default function SearchBar() {
         type="text"
         value={q}
         onChange={(e) => setQ(e.target.value)}
-        placeholder="Search..."
+        placeholder="Search by Name or Team..."
+        className="bg-white py-2 px-3 border outline-none"
       />
     </div>
   );

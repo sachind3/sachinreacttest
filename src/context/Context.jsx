@@ -5,7 +5,7 @@ export const AppContext = createContext();
 
 export const AppState = ({ children }) => {
   const [data, setData] = useState([]);
-  const [player, setPlayers] = useState([]);
+  const [players, setPlayers] = useState([]);
   const [q, setQ] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -31,11 +31,18 @@ export const AppState = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    const newEntries = data.filter((value) =>
-      value.TName.toLowerCase().includes(searchValue.toLowerCase())
-    );
-    setPacientes(newPacientes);
-  }, [searchValue]);
+    if (q.length > 0) {
+      const newEntries = data.filter((value) => {
+        return (
+          value.PFName.toLowerCase().includes(q.toLowerCase()) ||
+          value.TName.toLowerCase().includes(q.toLowerCase())
+        );
+      });
+      setPlayers(newEntries);
+    } else {
+      setPlayers(data);
+    }
+  }, [q, data]);
 
   const store = {
     loading,
