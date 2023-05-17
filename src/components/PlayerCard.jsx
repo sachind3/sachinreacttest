@@ -10,7 +10,7 @@ export default function PlayerCard({ player, i }) {
       className="bg-white/50 backdrop-blur p-3 border border-slate-200 rounded-md"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.05, delay: i * 0.05 }}
+      transition={{ duration: 0.5, delay: i * 0.1 }}
     >
       <div className="aspect-square mb-4">
         <img
